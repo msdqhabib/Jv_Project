@@ -1,0 +1,366 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+    <head>
+        
+        <meta charset="utf-8" />
+        
+        <title>{% block title %} {% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
+
+        <!-- jquery.vectormap css -->
+        <link href="{% static 'assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css" />
+
+        <!-- DataTables -->
+        <link href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+        <!-- Responsive datatable examples -->
+        <link href="{% static 'assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />  
+
+        <!-- Bootstrap Css -->
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body data-topbar="dark">
+    
+    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <header id="page-topbar">
+                <div class="navbar-header d-flex bg-white">
+                    <div class="d-flex">
+
+                        <div class="navbar-brand-box">
+                                                    <!-- LOGO -->
+                                                    
+                            
+                        </div>
+                        <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="ri-menu-2-line align-middle" style="color: black;"></i>
+                        </button>
+                        <a href="{% url 'dashboard' %}"><img src="{% static 'assets/images/jv-logo.jpg' %}" class="pt-2" alt="" height="60"></a>
+                    </div>
+
+                        
+
+                        
+                    <div class="d-flex justify-content-end">
+
+                        
+                        
+                        <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                                <i class="ri-fullscreen-line text-dark"></i>
+                            </button>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="ri-notification-3-line text-dark"></i>
+                                <span class="noti-dot"></span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-notifications-dropdown">
+                                <div class="p-3">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-0"> Notifications </h6>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="#!" class="small"> View All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-simplebar style="max-height: 230px;">
+                                    <a href="" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <div class="avatar-xs me-3">
+                                                <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                    <i class="ri-shopping-cart-line text-dark"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-1">
+                                                <h6 class="mb-1">Your order is placed</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-1">If several languages coalesce the grammar</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <img src="{% static 'assets/images/users/avatar-3.jpg' %}"
+                                                class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                            <div class="flex-1">
+                                                <h6 class="mb-1">James Lemire</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-1">It will seem like simplified English.</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <div class="avatar-xs me-3">
+                                                <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                    <i class="ri-checkbox-circle-line text-dark"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-1">
+                                                <h6 class="mb-1">Your item is shipped</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-1">If several languages coalesce the grammar</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <img src="{% static 'assets/images/users/avatar-4.jpg' %}"
+                                                class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                            <div class="flex-1">
+                                                <h6 class="mb-1">Salena Layfield</h6>
+                                                <div class="font-size-12 text-muted">
+                                                    <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="p-2 border-top">
+                                    <div class="d-grid">
+                                        <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                                            <i class="mdi mdi-arrow-right-circle me-1 text-dark"></i> View More..
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block user-dropdown">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="{% static 'assets/images/users/avatar-1.jpg' %}"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1 text-dark">Julia</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block text-dark"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="#"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                                <i class="ri-settings-2-line text-dark"></i>
+                            </button>
+                        </div>
+            
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <!-- User details -->
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+
+                            <li>
+                                <a href="index.html" class="waves-effect">
+                                    <i class="ri-dashboard-line text-dark"></i>
+                                    <span class="text-dark">Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="calendar.html" class=" waves-effect">
+                                    <i class="ri-calendar-2-line text-dark"></i>
+                                    <span class="text-dark">Calendar</span>
+                                </a>
+                            </li>
+                
+                            
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="ri-layout-3-line text-dark"></i>
+                                    <span class="text-dark">Layouts</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li>
+                                        <a href="javascript: void(0);" class="has-arrow text-dark">Vertical</a>
+                                        <ul class="sub-menu" aria-expanded="true">
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/dark_sidebar.html">Dark Sidebar</a></li>
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/compact_sidebar.html">Compact Sidebar</a></li>
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/icon_sidebar.html">Icon Sidebar</a></li>
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/boxed.html">Boxed Layout</a></li>
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/preloader.html">Preloader</a></li>
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/colored_sidebar.html">Colored Sidebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="javascript: void(0);" class="has-arrow">Horizontal</a>
+                                        <ul class="sub-menu" aria-expanded="true">
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/hori_topbar_light.html">Topbar light</a></li>
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/hori_boxed_width.html">Boxed width</a></li>
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/horizontal.html">Horizontal</a></li>
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/hori_preloader.html">Preloader</a></li>
+                                            <li><a href="{% url 'dashboard' %}?layout=layouts/hori_colored_header.html">Colored Header</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+
+                            
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                    
+                </div>
+                <!-- End Page-content -->
+               
+                <!-- <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © DHA.
+                            </div>
+                            
+                        </div>
+                    </div>
+                </footer> -->
+                
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div data-simplebar class="h-100">
+                <div class="rightbar-title d-flex align-items-center px-3 py-4">
+            
+                    <h5 class="m-0 me-2">Settings</h5>
+
+                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                        <i class="mdi mdi-close noti-icon"></i>
+                    </a>
+                </div>
+
+                <!-- Settings -->
+                <hr class="mt-0" />
+                <h6 class="text-center mb-0">Choose Layouts</h6>
+
+                <div class="p-4">
+                    <div class="mb-2">
+                        <img src="{% static 'assets/images/layouts/layout-1.jpg' %}" class="img-fluid img-thumbnail" alt="layout-1">
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
+                        <label class="form-check-label" for="light-mode-switch">Light Mode</label>
+                    </div>
+    
+                    <div class="mb-2">
+                        <img src="{% static 'assets/images/layouts/layout-2.jpg' %}" class="img-fluid img-thumbnail" alt="layout-2">
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch" data-bsStyle="assets/css/bootstrap.min.css" data-appStyle="assets/css/app.min.css">
+                        <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
+                    </div>
+    
+                    <div class="mb-2">
+                        <img src="{% static 'assets/images/layouts/layout-3.jpg' %}" class="img-fluid img-thumbnail" alt="layout-3">
+                    </div>
+                    <!-- <div class="form-check form-switch mb-5">
+                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css">
+                        <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
+                    </div> -->
+
+            
+                </div>
+
+            </div> <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'assets/libs/metismenu/metisMenu.min.js' %}"></script>
+        <script src="{% static 'assets/libs/simplebar/simplebar.min.js' %}"></script>
+        <script src="{% static 'assets/libs/node-waves/waves.min.js' %}"></script>
+
+        
+        <!-- apexcharts -->
+        <script src="{% static 'assets/libs/apexcharts/apexcharts.min.js' %}"></script>
+
+        <!-- jquery.vectormap map -->
+        <script src="{% static 'assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js' %}"></script>
+        <script src="{% static 'assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js' %}"></script>
+
+        <!-- Required datatable js -->
+        <script src="{% static 'assets/libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+        
+        <!-- Responsive examples -->
+        <script src="{% static 'assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js' %}"></script>
+
+        <script src="{% static 'assets/js/pages/dashboard.init.js' %}"></script>
+
+        <!-- App js -->
+        <script src="{% static 'assets/js/app.js' %}"></script>
+    </body>
+
+</html>
