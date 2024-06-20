@@ -9,7 +9,7 @@ class LogoutRedirectMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         # Check if the user is authenticated
-        if not request.user.is_authenticated and request.path != reverse('login') and request.path != reverse('register'):
+        if not request.user.is_authenticated and request.path != reverse('login') and request.path != reverse('register-firm'):
             # Redirect to the login page if the user is not authenticated
             return redirect('login')
 

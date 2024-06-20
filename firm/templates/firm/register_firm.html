@@ -27,13 +27,14 @@
                                   <div class="col-lg-6">
                                       <div class="mb-3">
                                         <label for="name" class="form-label">Firm Name</label>
-                                        <input type="text" class="form-control" name="company_name" placeholder="Please enter name" required>
+                                        <input type="text" class="form-control" name="company_name" placeholder="Please enter firm name" required>
                                       </div>
                                   </div>
+                                  
                                   <div class="col-lg-6">
                                       <div class="mb-3">
                                         <label for="email" class="form-label">NTN</label>
-                                        <input type="email" class="form-control" name="company_ntn" placeholder="Please enter cnic number" required>
+                                        <input type="email" class="form-control" name="company_ntn" placeholder="Please enter NTN number" required>
                                       </div>
                                   </div>
                               </div>
@@ -42,13 +43,13 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                       <label for="name" class="form-label">Email</label>
-                                      <input type="text" class="form-control" name="company_email" placeholder="Please enter name" required>
+                                      <input type="text" class="form-control" name="company_email" placeholder="Please enter email" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                       <label for="email" class="form-label">Contact No</label>
-                                      <input type="email" class="form-control" name="company_phone_no" placeholder="Please enter cnic number" required>
+                                      <input type="email" class="form-control" name="company_phone_no" placeholder="Please enter company contact no" required>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +95,7 @@
                                   <div class="col-lg-6">
                                       <div class="mb-3">
                                         <label for="email" class="form-label">CNIC</label>
-                                        <input type="email" class="form-control" name="owner_cnic" placeholder="Please enter email" required>
+                                        <input type="email" class="form-control" name="owner_cnic" placeholder="Please enter cnic" required>
                                       </div>
                                   </div>
                               </div>
@@ -133,13 +134,13 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="company_name" class="form-label">POC (Point of Contact)</label>
-                                            <input type="text" class="form-control" name="poc_name"  placeholder="Please enter company name" required>
+                                            <input type="text" class="form-control" name="poc_name"  placeholder="Please enter poc" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="company_name" class="form-label">POC Phone No</label>
-                                            <input type="text" class="form-control" name="poc_phone_no" id="company_name" placeholder="Please enter company name" required>
+                                            <input type="text" class="form-control" name="poc_phone_no" placeholder="Please enter phone no" required>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +154,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                         <label for="company_name" class="form-label">POC Email</label>
-                                        <input type="text" class="form-control" name="poc_email" id="company_name" placeholder="Please enter company name" required>
+                                        <input type="text" class="form-control" name="poc_email"  placeholder="Please enter poc email" required>
                                         </div>
                                     </div>
 
@@ -162,13 +163,13 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                         <label for="company_name" class="form-label">Password</label>
-                                        <input type="text" class="form-control" name="password" id="company_name" placeholder="Please enter company name" required>
+                                        <input type="text" class="form-control" name="password" placeholder="Please enter password" required>
                                         </div>
                                     </div>
                                         <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="company_name" class="form-label">Confirm Password</label>
-                                            <input type="text" class="form-control" name="confirm_password" id="company_name" placeholder="Please enter company name" required>
+                                            <input type="text" class="form-control" name="confirm_password"  placeholder="Please enter cnfirm password" required>
                                         </div>
                                     </div>
                                 </div>
@@ -238,6 +239,14 @@
       $("form.card").submit();
     }
   }
+</script>
+
+<script>
+  const phoneInputField = document.querySelector("#phone");
+  const phoneInput = window.intlTelInput(phoneInputField, {
+    utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  });
 </script>
 
 {% endblock %}
