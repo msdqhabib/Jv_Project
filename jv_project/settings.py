@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     # apps
     'users',
     'core',
+    'firm',
+    
     # built in modules/apps
     'crispy_forms',
     "crispy_bootstrap5",
@@ -41,6 +43,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'jv_project.middleware.LogoutRedirectMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -132,3 +135,9 @@ AUTH_USER_MODEL = 'users.User'
 # Crispy Configuration
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+
+AUTHENTICATION_BACKENDS = [
+    'users.backends.EmailBackend',  # Custom backend
+    'django.contrib.auth.backends.ModelBackend',  # Default
+]

@@ -11,7 +11,7 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
+        <!-- <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}"> -->
 
         <!-- jquery.vectormap css -->
         <link href="{% static 'assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css" />
@@ -29,9 +29,13 @@
         <!-- App Css-->
         <link href="{% static 'assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
 
+        <!-- Custom Css-->
+        <link href="{% static 'assets/css/custom.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+
+
     </head>
 
-    <body data-topbar="dark">
+    <body data-topbar="dark" data-layout="horizontal">
     
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
@@ -39,20 +43,22 @@
         <div id="layout-wrapper">
 
             
-            <header id="page-topbar">
-                <div class="navbar-header d-flex bg-white">
-                    <div class="d-flex">
+            <header id="page-topbar" style="background-color: white;">
+                <div class="navbar-header">
+
 
                         <div class="navbar-brand-box">
                                                     <!-- LOGO -->
-                                                    
+                            <a href="{% url 'dashboard' %}"><img src="{% static 'assets/images/jv-logo.jpg' %}" class="pt-2" alt="" height="60"></a>
+                   
                             
                         </div>
-                        <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
-                            <i class="ri-menu-2-line align-middle" style="color: black;"></i>
+                        <button type="button" class="btn btn-sm px-3 font-size-24 d-lg-none header-item" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                            <i class="ri-menu-2-line align-middle"></i>
                         </button>
-                        <a href="{% url 'dashboard' %}"><img src="{% static 'assets/images/jv-logo.jpg' %}" class="pt-2" alt="" height="60"></a>
-                    </div>
+                        <!-- <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                            <i class="ri-menu-2-line align-middle" style="color: black;"></i>
+                        </button> -->
 
                         
 
@@ -168,7 +174,13 @@
                                 <!-- item-->
                                 <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profile</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="#"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                                <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="dropdown-item text-danger logout-btn">
+                                        <i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout
+                                    </button>
+                                    <!-- <a class="dropdown-item text-danger"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a> -->
+                            </form>
                             </div>
                         </div>
 
@@ -183,72 +195,88 @@
             </header>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <div class="vertical-menu">
+            
+            <div class="topnav">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
 
-                <div data-simplebar class="h-100">
+                        <div class="collapse navbar-collapse" id="topnav-menu-content">
+                            <ul class="navbar-nav">
 
-                    <!-- User details -->
+                                <li class="nav-item">
+                                    <a href="{% url 'dashboard' %}" class="nav-link">
+                                        <!-- <i class="ri-dashboard-line text-dark"></i> -->
+                                        <i class="ri-dashboard-line text-dark"></i>
+                                        <span class="text-dark">Dashboard</span>
+                                    </a>
+                                </li>
 
-                    <!--- Sidemenu -->
-                    <div id="sidebar-menu">
-                        <!-- Left Menu Start -->
-                        <ul class="metismenu list-unstyled" id="side-menu">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button"
+                                    >
+                                        <i class="ri-pencil-ruler-2-line me-2 text-dark"></i><span class="text-dark">Properties</span> <div class="arrow-down"></div>
+                                    </a>
 
-                            <li>
-                                <a href="index.html" class="waves-effect">
-                                    <i class="ri-dashboard-line text-dark"></i>
-                                    <span class="text-dark">Dashboard</span>
-                                </a>
-                            </li>
+                                    <div class="dropdown-menu mega-dropdown-menu px-2 dropdown-mega-menu-xl"
+                                        aria-labelledby="topnav-uielement">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div>
+                                                    <a href="ui-alerts.html" class="dropdown-item text-dark">DHA Islamabad-Rawalpindi</a>
+                                                    <a href="ui-buttons.html" class="dropdown-item text-dark">DHA Bahawalpur</a>
+                                                    <a href="ui-cards.html" class="dropdown-item text-dark">DHA Gujranwala</a>
+                                                    <a href="ui-carousel.html" class="dropdown-item text-dark">DHA Karachi</a>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div>
+                                                    <a href="ui-grid.html" class="dropdown-item text-dark">SEZ Karachi</a>
+                                                    <a href="ui-images.html" class="dropdown-item text-dark">DHA Lahore</a>
+                                                    <a href="ui-images.html" class="dropdown-item text-dark">DHA Multan</a>
+                                                    <a href="ui-images.html" class="dropdown-item text-dark">DHA Peshawar</a>
+                                                                                               
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div>
+                                                    <a href="ui-dropdowns.html" class="dropdown-item text-dark">DHA City Karachi</a>
+                                                    <a href="ui-images.html" class="dropdown-item text-dark">DHA Quetta</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
 
-                            <li>
-                                <a href="calendar.html" class=" waves-effect">
-                                    <i class="ri-calendar-2-line text-dark"></i>
-                                    <span class="text-dark">Calendar</span>
-                                </a>
-                            </li>
-                
-                            
+                                    </div>
+                                </li>
+                    
+                                <li class="nav-item">
+                                    <a href="calendar.html" class="nav-link">
+                                        <i class="ri-calendar-2-line text-dark"></i>
+                                        <span class="text-dark">Calendar</span>
+                                    </a>
+                                </li>
 
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-layout-3-line text-dark"></i>
-                                    <span class="text-dark">Layouts</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="true">
-                                    <li>
-                                        <a href="javascript: void(0);" class="has-arrow text-dark">Vertical</a>
-                                        <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/dark_sidebar.html">Dark Sidebar</a></li>
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/compact_sidebar.html">Compact Sidebar</a></li>
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/icon_sidebar.html">Icon Sidebar</a></li>
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/boxed.html">Boxed Layout</a></li>
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/preloader.html">Preloader</a></li>
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/colored_sidebar.html">Colored Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="javascript: void(0);" class="has-arrow">Horizontal</a>
-                                        <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/hori_topbar_light.html">Topbar light</a></li>
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/hori_boxed_width.html">Boxed width</a></li>
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/horizontal.html">Horizontal</a></li>
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/hori_preloader.html">Preloader</a></li>
-                                            <li><a href="{% url 'dashboard' %}?layout=layouts/hori_colored_header.html">Colored Header</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                
-                            </li>
+                                <li class="nav-item">
+                                    <a href="calendar.html" class="nav-link">
+                                        <i class="ri-file-user-line text-dark"></i>
+                                        <span class="text-dark">Profile</span>
+                                    </a>
+                                </li>
+                    
+                                <li class="nav-item">
+                                    <a href="calendar.html" class="nav-link">
+                                        <i class="ri-logout-box-line text-danger"></i>
+                                        <span class="text-danger">Logout</span>
+                                    </a>
+                                </li>
 
-                            
-                        </ul>
-                    </div>
-                    <!-- Sidebar -->
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
-            <!-- Left Sidebar End -->
-
+            
             
 
             <!-- ============================================================== -->

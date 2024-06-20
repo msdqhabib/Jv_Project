@@ -1,34 +1,36 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import UserRegistrationForm
+
 from django.contrib.auth import login, authenticate
 from django.views import View
 from django.urls import reverse_lazy
 from datetime import datetime
 from django.contrib import messages
 from django.http import JsonResponse
-from .models import User
+from .models import User, UserRole
+from firm.models import Firm
 
 
 
 
-class RegisterView(View):
-    template_name = 'users/register.html'
-    form_class = UserRegistrationForm
 
+class LoginView(View):
     def get(self, request, *args, **kwargs):
-        form = self.form_class()
-        return render(request, self.template_name, {'form': form})
+        return render(request, 'users/login.html')
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(
-                request, 'Account created successfully. You can now log in.')
-            return redirect('login')
-        else:
-            # If form data is invalid, display error messages
-            messages.error(
-                request, f'Failed to create account. Please enter correct details')
-            return render(request, self.template_name, {'form': form})
+        try:
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            user = authenticate(username=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('dashboard')  # Redirect to the dashboard page after successful login
 
+            else:
+                # Handle invalid login credentials
+                messages.error(request, 'Invalid Username or Password')
+                return redirect("login")
+        
+        except Exception as e:
+            messages.error(request, 'Invalid Username or Passworddd')
+            return redirect("login")
