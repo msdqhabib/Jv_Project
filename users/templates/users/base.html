@@ -2,95 +2,144 @@
 <!doctype html>
 <html lang="en">
 
-    <head>
-        
-        <meta charset="utf-8" />
-        <title>{% block title %}{% endblock %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesdesign" name="author" />
-        <!-- App favicon -->
-        <!-- jquery.vectormap css -->
-        <link href="{% static 'assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css" />
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesdesign" name="author" />
 
-        <!-- DataTables -->
-        <link href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- App favicon -->
+    <!-- jquery.vectormap css -->
+    <link href="{% static 'assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css' %}" rel="stylesheet" type="text/css" />
 
-        <!-- Responsive datatable examples -->
-        <link href="{% static 'assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />  
+    <!-- DataTables -->
+    <link href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
 
-        <!-- Bootstrap Css -->
-        <link href="{% static 'assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="{% static 'assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="{% static 'assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />  
 
-        <!-- Custom Css-->
-        <link href="{% static 'assets/css/custom.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Css -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{% static 'assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{% static 'assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Custom Css-->
+    <link href="{% static 'assets/css/custom.css' %}" id="app-style" rel="stylesheet" type="text/css" />
 
-        <!-- twitter-bootstrap-wizard css -->
-        <link rel="stylesheet" href="{% static 'assets/libs/twitter-bootstrap-wizard/prettify.css' %}">
+    <!-- twitter-bootstrap-wizard css -->
+    <link rel="stylesheet" href="{% static 'assets/libs/twitter-bootstrap-wizard/prettify.css' %}">
 
-    </head>
+    <!-- intlTelInput CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/css/intlTelInput.css">
+</head>
 
-<body class="">
+<body>
   <!-- Bootstrap Toasts for displaying messages -->
-<div aria-live="polite" aria-atomic="true" class="position-relative">
-  <div class="toast-container position-absolute top-0 end-0 p-3">
-      {% for message in messages %}
-      <div class="toast {% if message.tags == 'error' %}bg-danger text-white{% else %}bg-success text-white{% endif %}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
-        <div class="toast-header">
-                  <strong class="me-auto">{{ message.tags|title }}</strong>
-                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-              <div class="toast-body">
-                  {{ message }}
-              </div>
-          </div>
-       {% endfor %}
-      </div>
-</div>
-    {% block content %}
-        
-    {% endblock %}
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container position-absolute top-0 end-0 p-3">
+        {% for message in messages %}
+        <div class="toast {% if message.tags == 'error' %}bg-danger text-white{% else %}bg-success text-white{% endif %}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+            <div class="toast-header">
+                <strong class="me-auto">{{ message.tags|title }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
 
+  {% block content %}
+  {% endblock %}
 
+  <!-- JAVASCRIPT -->
+  <script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
+  <!-- twitter-bootstrap-wizard js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js" integrity="sha512-MmlBl0OWYktojJCMZit+VXU1CHN7WoDDz9nz3zMjH3nvIcElr89g5Td4AYVqrU40zSd/HZqDFp20gH9JlAuvdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+  <!-- form wizard init -->
+  <script src="{% static 'assets/js/pages/form-wizard.init.js' %}"></script>
 
-</div>
+  <!-- intlTelInput JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
 
-        <!-- JAVASCRIPT -->
-        <script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
-        <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    
-        
-    
-
-         <!-- twitter-bootstrap-wizard js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js" integrity="sha512-MmlBl0OWYktojJCMZit+VXU1CHN7WoDDz9nz3zMjH3nvIcElr89g5Td4AYVqrU40zSd/HZqDFp20gH9JlAuvdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="{% static 'assets/libs/twitter-bootstrap-wizard/bootstrap/js/bootstrap.min.js' %}"></script>
-
-
-
-        <!-- form wizard init -->
-        <script src="{% static 'assets/js/pages/form-wizard.init.js' %}"></script>
-
-
-<script>
-   // Function to initialize toasts
-   function showToast() {
-        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+  <script>
+    // Function to initialize toasts
+    function showToast() {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
         var toastList = toastElList.map(function(toastEl) {
-            return new bootstrap.Toast(toastEl)
-        })
+            return new bootstrap.Toast(toastEl);
+        });
         toastList.forEach(toast => toast.show());
     }
 
     document.addEventListener('DOMContentLoaded', function() {
         showToast();
     });
-</script>
+
+  </script>
+
+
+<!-- js plugin for entering and validating international telephone numbers -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/js/intlTelInput.min.js"></script>
+<script>
+    const input = document.querySelector("#phone");
+    const hiddenInput = document.querySelector("#full_phone");
+    const iti = window.intlTelInput(input, {
+        initialCountry: "pk", // Set the default country to Pakistan
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/js/utils.js",
+        separateDialCode: true, // Display the dial code separately
+
+    });
+    
+    const personalInput = document.querySelector("#personal_phone");
+    const personalHiddenInput = document.querySelector("#full_personal_phone");
+    const personalIti = window.intlTelInput(personalInput, {
+        initialCountry: "pk", // Set the default country to Pakistan
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.1.0/build/js/utils.js",
+        separateDialCode: true, // Display the dial code separately
+    });
+
+
+
+    // Handle form submission
+    function submitForm() {
+        if ($("#next_button").text() === "Submit") {
+            const countryData = iti.getSelectedCountryData();
+            const dialCode = countryData.dialCode;
+            const phoneNumber = iti.getNumber();
+
+            const fullPhoneNumber = `+${dialCode}${phoneNumber}`;
+
+            // Update hidden input with the full phone number
+            hiddenInput.value = fullPhoneNumber;
+
+            // Debugging: Log the full phone number
+            console.log('Full Phone Number:', fullPhoneNumber);
+
+
+             // For personal phone number
+             const personalCountryData = personalIti.getSelectedCountryData();
+            const personalDialCode = personalCountryData.dialCode;
+            const personalPhoneNumber = personalIti.getNumber();
+            const fullPersonalPhoneNumber = `+${personalDialCode}${personalPhoneNumber}`;
+            personalHiddenInput.value = fullPersonalPhoneNumber;
+            console.log('Full Personal Phone Number:', fullPersonalPhoneNumber);
+
+
+            // Submit the form
+            $("form.card").submit();
+        }
+    }
+
+       
+  </script>
 </body>
 </html>

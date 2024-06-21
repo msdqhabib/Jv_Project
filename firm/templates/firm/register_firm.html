@@ -11,7 +11,7 @@
                 <h1 class="text-center">Firm Registration</h1>
                 <div class="card">
                     <div class="card-body">
-                        <form class="card" action="{% url 'register-firm' %}" method="post">
+                        <form class="card" action="{% url 'register-firm' %}" method="post" id="firm-form">
                           {% csrf_token %}  
                           <div class="card-header">
                               <nav class="nav nav-pills nav-fill">
@@ -48,8 +48,9 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                      <label for="email" class="form-label">Contact No</label>
-                                      <input type="email" class="form-control" name="company_phone_no" placeholder="Please enter company contact no" required>
+                                      <label for="email" class="form-label">Contact No</label><br>
+                                      <input type="tel" class="form-control" name="company_phone_no" id="phone" placeholder="Company contact no" required>
+                                      <input type="hidden" name="company_phone_no" id="full_phone">
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +96,7 @@
                                   <div class="col-lg-6">
                                       <div class="mb-3">
                                         <label for="email" class="form-label">CNIC</label>
-                                        <input type="email" class="form-control" name="owner_cnic" placeholder="Please enter cnic" required>
+                                        <input type="number" class="form-control" name="owner_cnic" placeholder="Please enter cnic" required>
                                       </div>
                                   </div>
                               </div>
@@ -112,13 +113,20 @@
                                   <div class="col-lg-6">
                                       <div class="mb-3">
                                         <label for="name" class="form-label">Phone No</label>
-                                        <input type="number" class="form-control" name="owner_phone_no" placeholder="Please enter phone number" required>
+                                        <input type="tel" class="form-control" name="owner_phone_no" id="personal_phone" placeholder="Please enter phone number" required>
+                                        <input type="hidden" name="full_personal_phone" id="full_personal_phone">
+
                                       </div>
                                   </div>
 
                               </div>
                               <div class="row">
-
+                                <div class="col-lg-6">
+                                  <div class="mb-3">
+                                  <label for="owner_email" class="form-label">Email</label>
+                                  <input type="text" class="form-control" name="owner_email"  placeholder="Please enter your email" required>
+                                  </div>
+                              </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                       <label for="name" class="form-label">Address</label>
@@ -131,18 +139,27 @@
                                 
                               <div class="tab d-none">
                                 <div class="row">
+                                  <div class="col-lg-6">
+                                      <div class="mb-3 form-check">
+                                          <input type="checkbox" class="form-check-input" id="same_personal_info">
+                                          <label class="form-check-label" for="same_personal_info"><span class="text-primary">Same info as personal details</span></label>
+                                      </div>
+                                  </div>
+                              </div>
+                                <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label for="company_name" class="form-label">POC (Point of Contact)</label>
                                             <input type="text" class="form-control" name="poc_name"  placeholder="Please enter poc" required>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="company_name" class="form-label">POC Phone No</label>
-                                            <input type="text" class="form-control" name="poc_phone_no" placeholder="Please enter phone no" required>
-                                        </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                    <label for="company_name" class="form-label">POC Email</label>
+                                    <input type="text" class="form-control" name="poc_email"  placeholder="Please enter poc email" required>
                                     </div>
+                                </div>
+
                                 </div>
                                 <div class="row">
                                   <div class="col-lg-6">
@@ -151,12 +168,6 @@
                                       <textarea name="poc_address" class="form-control" rows="5"></textarea>
                                     </div>
                                 </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                        <label for="company_name" class="form-label">POC Email</label>
-                                        <input type="text" class="form-control" name="poc_email"  placeholder="Please enter poc email" required>
-                                        </div>
-                                    </div>
 
                                 </div>
                                 <div class="row">
@@ -176,6 +187,8 @@
                             </div>
                       
                               <div class="tab d-none">
+                                <!-- <h6>Please Review Your Changes and Click 'Submit' to Save the Property Listing</h3> -->
+
                                 <p>All Set! Please submit to continue. Thank you</p>
                               </div>
                             </div>
@@ -197,56 +210,9 @@
     </div> <!-- container-fluid -->
 </div>  
 
-<!-- JAVASCRIPT -->
 <script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script>
-  var current = 0;
-  var tabs = $(".tab");
-  var tabs_pill = $(".tab-pills");
-  
-  loadFormData(current);
-  
-  function loadFormData(n) {
-    $(tabs_pill[n]).addClass("active");
-    $(tabs[n]).removeClass("d-none");
-    $("#back_button").attr("disabled", n == 0 ? true : false);
-    if (n == tabs.length - 1) {
-      $("#next_button").text("Submit").attr("onclick", "submitForm()");
-    } else {
-      $("#next_button").text("Next").attr("onclick", "next()");
-    }
-  }
-  
-  function next() {
-    $(tabs[current]).addClass("d-none");
-    $(tabs_pill[current]).removeClass("active");
-  
-    current++;
-    loadFormData(current);
-  }
-  
-  function back() {
-    $(tabs[current]).addClass("d-none");
-    $(tabs_pill[current]).removeClass("active");
-  
-    current--;
-    loadFormData(current);
-  }
-  
-  function submitForm() {
-    if ($("#next_button").text() === "Submit") {
-      $("form.card").submit();
-    }
-  }
-</script>
+<script src="{% static 'assets/js/register-firm.js' %}"></script>
 
-<script>
-  const phoneInputField = document.querySelector("#phone");
-  const phoneInput = window.intlTelInput(phoneInputField, {
-    utilsScript:
-      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-  });
-</script>
 
 {% endblock %}

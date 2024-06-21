@@ -6,7 +6,7 @@ class Firm(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=255)
     company_ntn = models.CharField(max_length=255, blank=True, null=True)
-    company_email = models.EmailField()
+    company_email = models.EmailField(unique=True)
     business_type = models.CharField(max_length=255)
     company_website = models.CharField(max_length=255, blank=True, null=True)
     company_phone_no = models.CharField(max_length=255)
@@ -16,10 +16,12 @@ class Firm(models.Model):
     owner_nationality = models.CharField(max_length=255, blank=True, null=True)
     owner_phone_no = models.CharField(max_length=255, blank=True, null=True)
     owner_address = models.TextField(null=True, blank=True)
+    owner_email = models.EmailField(unique=True)
+
 
     poc_name = models.CharField(max_length=255, blank=True, null=True)
     poc_phone_no = models.CharField(max_length=255, blank=True, null=True)
-    poc_email = models.EmailField(blank=True, null=True)
+    poc_email = models.EmailField(unique=True)
     poc_address = models.TextField(blank=True, null=True)
 
     STATUS_CHOICES = (
