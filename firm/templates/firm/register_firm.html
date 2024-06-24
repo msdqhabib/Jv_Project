@@ -96,7 +96,9 @@
                                   <div class="col-lg-6">
                                       <div class="mb-3">
                                         <label for="email" class="form-label">CNIC</label>
-                                        <input type="number" class="form-control" name="owner_cnic" placeholder="Please enter cnic" required>
+                                        <input type="radio" id="cnic_checkbox" name="id_type" value="cnic" checked> 
+                                        <input type="radio" id="nic_checkbox" name="id_type" value="nic"> NIC
+                                        <input type="text" class="form-control" id="owner_cnic" name="owner_cnic" placeholder="Please enter cnic" required>
                                       </div>
                                   </div>
                               </div>
@@ -214,5 +216,61 @@
 <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'assets/js/register-firm.js' %}"></script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const cnicCheckbox = document.getElementById('cnic_checkbox');
+  const nicCheckbox = document.getElementById('nic_checkbox');
+  const cnicInput = document.getElementById('owner_cnic');
 
+  function formatCnicNic(inputValue, isCnic) {
+      const cleaned = inputValue.replace(/\D+/g, '');
+      let formatted = '';
+
+      if (isCnic) {
+          if (cleaned.length > 0) {
+              formatted += cleaned.substring(0, 5);
+          }
+          if (cleaned.length >= 6) {
+              formatted += '-' + cleaned.substring(5, 12);
+          }
+          if (cleaned.length >= 13) {
+              formatted += '-' + cleaned.substring(12, 13);
+          }
+      } else {
+          if (cleaned.length > 0) {
+              formatted += cleaned.substring(0, 6);
+          }
+          if (cleaned.length >= 7) {
+              formatted += '-' + cleaned.substring(6, 12);
+          }
+          if (cleaned.length >= 13) {
+              formatted += '-' + cleaned.substring(12, 13);
+          }
+      }
+
+      return formatted;
+  }
+
+  cnicCheckbox.addEventListener('change', function () {
+      if (cnicCheckbox.checked) {
+          nicCheckbox.checked = false;
+          cnicInput.value  = ""
+      }
+  });
+
+  nicCheckbox.addEventListener('change', function () {
+      if (nicCheckbox.checked) {
+          cnicCheckbox.checked = false;
+          cnicInput.value  = ""
+      }
+  });
+
+  cnicInput.addEventListener('input', function (e) {
+      const isCnic = cnicCheckbox.checked;
+      const formattedValue = formatCnicNic(e.target.value, isCnic);
+      cnicInput.value = formattedValue;
+  });
+});
+
+</script>
 {% endblock %}

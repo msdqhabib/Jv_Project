@@ -9,8 +9,18 @@ class LogoutRedirectMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         # Check if the user is authenticated
-        if not request.user.is_authenticated and request.path != reverse('login') and request.path != reverse('register-firm'):
-            # Redirect to the login page if the user is not authenticated
-            return redirect('login')
+        if not request.user.is_authenticated and 'activate' not in request.path and request.path != reverse('login') and request.path != reverse('register-firm'):
+           # Check if the URL contains 'activate'
+            print('fxn calledd')
 
-        return response
+            # if 'activate' not in request.path:
+                # Redirect to the login page if the user is not authenticated
+            return redirect('login')
+        
+         # Continue processing the request
+        response = self.get_response(request)
+        return response    
+            # else:
+            #     print('cond xecuted')
+            #     return redirect('login')
+

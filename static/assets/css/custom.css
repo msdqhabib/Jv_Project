@@ -9,3 +9,14 @@
 .iti {
     width: 100%;
 }
+
+/* Firms Dashboard styling */
+
+.dashboard-list-items-count {
+    margin-right: -30px;
+}
+
+
+.dashboard-cards-list-items li::marker {
+    color: #007bff;
+}

@@ -13,7 +13,11 @@ from django.core.mail import send_mail
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_decode
+
 from django.utils.encoding import force_bytes
+from django.utils.encoding import force_str
+
 from django.contrib.auth.tokens import default_token_generator
 
 
@@ -37,7 +41,7 @@ class FirmCreateView(View):
         full_personal_phone = request.POST.get('full_personal_phone', '')
         if company_phone_no:
             # company_phone_no = company_phone_no[-1]
-            print(f'company_phone_no - {company_phone_no}')
+
             split_parts = company_phone_no.split('+', 2)  # Limiting to split at most 2 times
             
             if len(split_parts) >= 3:
@@ -55,7 +59,7 @@ class FirmCreateView(View):
 
         if full_personal_phone:
             # company_phone_no = company_phone_no[-1]
-            print(f'company_phone_no - {full_personal_phone}')
+
             split_parts = full_personal_phone.split('+', 2)  # Limiting to split at most 2 times
             
             if len(split_parts) >= 3:
@@ -102,6 +106,11 @@ class FirmCreateView(View):
                 firm.user = user
                 firm.save()
 
+                
+                # add status in Firm status history for tracking
+                firm.firm_status_change('Pending')
+
+
                 # Send verification email
                 send_verification_email(request, user, form.cleaned_data['poc_email'])
 
@@ -144,10 +153,11 @@ def send_verification_email(request, user, email):
     send_mail(
         mail_subject,
         message,
-        'your-email@gmail.com',
+        'msdqhabib@gmail.com',
         [email],
         fail_silently=False,
     )
+    print(f'send_mail - {send_mail}')
 
 
 def activate(request, uidb64, token):
@@ -157,11 +167,39 @@ def activate(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
-    if user is not None and default_token_generator.check_token(user, token):
-        user.is_active = True
-        user.save()
-        messages.success(request, 'Your account has been activated successfully!')
-        return redirect('login')
+    firm_instance = Firm.objects.filter(user=user).last()
+    if firm_instance.status != "Verified":
+        if user is not None and default_token_generator.check_token(user, token):
+            firm_instance = Firm.objects.filter(user=user).last()
+
+            # add status in firm status history
+            firm_instance.firm_status_change('Verified')
+            # Set status to Verified
+            firm_instance.status = 'Verified'
+            firm_instance.save()
+
+
+            user.is_active = True
+            user.save()
+            messages.success(request, 'Your account has been activated successfully!')
+            return redirect('login')
+        else:
+            messages.error(request, 'Activation link is invalid!')
+            return render(request, 'activation_invalid.html')
+
+
+# In case the firm user has not received the activation link
+@login_required
+def resend_verification_email(request):
+    if request.method == 'POST':
+        user = request.user
+        email = user.email
+
+        # Send verification email
+        send_verification_email(request, user, email)
+
+        messages.info(request, 'Verification email has been resent. Please check your email.')
+
+        return redirect('dashboard')
     else:
-        messages.error(request, 'Activation link is invalid!')
-        return render(request, 'activation_invalid.html')
+        return HttpResponseNotAllowed(['POST'])

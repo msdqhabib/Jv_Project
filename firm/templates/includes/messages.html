@@ -1,0 +1,33 @@
+  <!-- Bootstrap Toasts for displaying messages -->
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container position-absolute top-0 end-0 p-3">
+        {% for message in messages %}
+        <div class="toast {% if message.tags == 'error' %}bg-danger text-white{% else %}bg-success text-white{% endif %}" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+            <div class="toast-header">
+                <strong class="me-auto">{{ message.tags|title }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+
+  
+<script>
+    // Function to initialize toasts
+    function showToast() {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function(toastEl) {
+            return new bootstrap.Toast(toastEl);
+        });
+        toastList.forEach(toast => toast.show());
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        showToast();
+    });
+
+  </script>

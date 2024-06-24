@@ -1,5 +1,7 @@
 from django.db import models
 from users.models import User
+from django.utils import timezone
+from datetime import datetime
 
 
 class Firm(models.Model):
@@ -26,13 +28,31 @@ class Firm(models.Model):
 
     STATUS_CHOICES = (
         ('Pending', 'Pending'),
-        ('Approved by DHA', 'Approved by DHA'),
-        ('Approved by Admin', 'Approved by Admin'),
+        ('Verified', 'Verified'),
+        ('Approved_by_DHA', 'Approved_by_DHA'),
+        ('Approved_by_GHQ', 'Approved_by_GHQ'),
     )
 
     status = models.CharField(
         max_length=255, choices=STATUS_CHOICES, default='Pending', blank=True)
+    status_history = models.JSONField(default=list, null=True, blank=True)
+
     reg_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.company_name
+
+    
+    def firm_status_change(self, status):
+        timestamp = datetime.now()
+        timestamp = timestamp.strftime('%d:%m:%Y %H:%M:%S')
+
+        # Check if status already exists in property_status_history
+        status_exists = any(
+            entry['status'] == status for entry in self.status_history)
+
+        if not status_exists:
+            self.status_history.append({'status': status,
+                                                'timestamp': timestamp})
+            self.save()
+
