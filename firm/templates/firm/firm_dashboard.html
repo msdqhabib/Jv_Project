@@ -281,11 +281,11 @@
     
     </div><!-- end row -->
 
-    <div class="row mt-5">
+    <div class="row mt-5 d-flex">
         <div class="col-lg-6">
-            <div class="card">
+            <div class="card" style="padding-bottom: 45px;">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Pie Chart</h4>
+                    <h4 class="card-title mb-4">DHA Listing Stats</h4>
                     
                     <div id="pie_chart" class="apex-charts" dir="ltr"></div>
                 </div>
@@ -294,29 +294,18 @@
 
                 <div class="col-lg-6">
                     <div class="card">
-                        <div class="chart-wrapper mb-4">
-                            <div class="px-4 pt-4 d-flex justify-content-between">
-                                <div>
-                                    <h4 class="font-weight-bold">Properties Listing Activities</h4>
-                                    <p>Last 15 Days</p>
-                                </div>
-                                <div>
-                                    <span><i class="fa fa-caret-up text-success"></i></span>
-                                    <h4 class="d-inline-block text-success">{{total_properties_30_days}}</h4>
-                                    <p class=" text-danger">
-                                        {% if percentage_increase > 0 %}+ {% else %} - {% endif %}{{percentage_increase}}% </p>
-                                </div>
+                        <div class="chart-wrapper">
+
+                            <div class="card-body">
+                                <h4 class="card-title">DHA Listing Stats</h4>
+                                <div id="column_chart_datalabel" class="apex-charts m-0 p-0" dir="ltr"></div>
                             </div>
-                            <div class="chart-container ml-2">
-                                    <div class="mb-3" id="chart"></div>
-                            </div>
-                            
-    
-                        </div>
                     
-                    </div>
+                         </div>
+                        </div>
+                </div>
             </div>
-        </div>
+        
 
 
 
@@ -325,8 +314,11 @@
     {% endif %}
 </div>
 
+<script>
+    // apex chart configuration
 
-
+      
+</script>
 
 
   {% endblock %}

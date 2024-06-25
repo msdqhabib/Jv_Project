@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard{% endblock %}
+
+{% block content %}
+
+
+<h1>{{ object.phase }}</h1>
+  <p>{{ object.detail_of_project }}</p>
+  <!-- Add other fields as necessary -->
+  <a href="{% url 'property-edit' object.pk %}">Edit</a>
+  <a href="{% url 'property-delete' object.pk %}">Delete</a>
+  <a href="{% url 'property-list' %}">Back to List</a>
+
+{% endblock %}

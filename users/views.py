@@ -8,7 +8,8 @@ from django.contrib import messages
 from django.http import JsonResponse
 from .models import User, UserRole
 from firm.models import Firm
-
+from django.urls import reverse_lazy
+from django.contrib.auth import views as auth_views
 
 
 
@@ -34,3 +35,9 @@ class LoginView(View):
         except Exception as e:
             messages.error(request, 'Invalid Username or Passworddd')
             return redirect("login")
+
+
+
+class CustomLogoutView(auth_views.LogoutView):
+    def get_next_page(self):
+       next_page = reverse_lazy('login')  # Redirect to 'login' URL after logout

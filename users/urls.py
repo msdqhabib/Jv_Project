@@ -11,7 +11,7 @@ urlpatterns = [
     #     template_name='users/login.html', authentication_form=CustomAuthenticationForm), name='login'),
 
     path('login/', views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', views.CustomLogoutView.as_view(), name='logout'),
     
     
     # path('users/', UserListView.as_view(), name='user_list'),

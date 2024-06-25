@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard{% endblock %}
+
+{% block content %}
+
+<h1>Delete Property</h1>
+<p>Are you sure you want to delete "{{ object }}"?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Yes, delete</button>
+</form>
+<a href="{% url 'property-list' %}">Cancel</a>
+
+{% endblock %}

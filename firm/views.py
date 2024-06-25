@@ -203,3 +203,7 @@ def resend_verification_email(request):
         return redirect('dashboard')
     else:
         return HttpResponseNotAllowed(['POST'])
+
+
+def faqs(request):
+    return render(request, 'firm/faqs.html')

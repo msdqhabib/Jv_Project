@@ -35,7 +35,7 @@
         <style>
             @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');container{margin-top:50px;margin-bottom: 50px}.card{position: relative;display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0, 0, 0, 0.1);border-radius: 0.10rem}.card-header:first-child{border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0}.card-header{padding: 0.75rem 1.25rem;margin-bottom: 0;background-color: #fff;border-bottom: 1px solid rgba(0, 0, 0, 0.1)}.track{position: relative;background-color: #ddd;height: 7px;display: -webkit-box;display: -ms-flexbox;display: flex;margin-bottom: 60px;margin-top: 50px}.track .step{-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;width: 25%;margin-top: -18px;text-align: center;position: relative}.track .step.active:before{background: #00B98E}.track .step::before{height: 7px;position: absolute;content: "";width: 100%;left: 0;top: 18px}.track .step.active .icon{background: #00B98E;color: #fff}.track .icon{display: inline-block;width: 40px;height: 40px;line-height: 40px;position: relative;border-radius: 100%;background: #ddd}.track .step.active .text{font-weight: 400;color: #000}.track .text{display: block;margin-top: 7px}.itemside{position: relative;display: -webkit-box;display: -ms-flexbox;display: flex;width: 100%}.itemside .aside{position: relative;-ms-flex-negative: 0;flex-shrink: 0}.img-sm{width: 80px;height: 80px;padding: 7px}ul.row, ul.row-sm{list-style: none;padding: 0}.itemside .info{padding-left: 15px;padding-right: 7px}.itemside .title{display: block;margin-bottom: 5px;color: #212529}p{margin-top: 0;margin-bottom: 1rem}.btn-warning{color: #ffffff;background-color: #ee5435;border-color: #ee5435;border-radius: 1px}.btn-warning:hover{color: #ffffff;background-color: #ff2b00;border-color: #ff2b00;border-radius: 1px}
         </style>
-    
+
     </head>
 
     <body data-topbar="dark" data-layout="horizontal">
@@ -185,8 +185,8 @@
                                     <button type="submit" class="dropdown-item text-danger logout-btn">
                                         <i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout
                                     </button>
-                                    <!-- <a class="dropdown-item text-danger"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a> -->
-                            </form>
+                                </form>
+                                
                             </div>
                         </div>
 
@@ -202,90 +202,16 @@
 
             <!-- ========== Left Sidebar Start ========== -->
             
-            <div class="topnav">
-                <div class="container-fluid">
-                    <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
-
-                        <div class="collapse navbar-collapse" id="topnav-menu-content">
-                            <ul class="navbar-nav">
-
-                                <li class="nav-item">
-                                    <a href="{% url 'dashboard' %}" class="nav-link">
-                                        <!-- <i class="ri-dashboard-line text-dark"></i> -->
-                                        <i class="ri-dashboard-line text-dark"></i>
-                                        <span class="text-dark">Dashboard</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button"
-                                    >
-                                        <i class="ri-pencil-ruler-2-line me-2 text-dark"></i><span class="text-dark">Properties</span> <div class="arrow-down"></div>
-                                    </a>
-
-                                    <div class="dropdown-menu mega-dropdown-menu px-2 dropdown-mega-menu-xl"
-                                        aria-labelledby="topnav-uielement">
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div>
-                                                    <a href="ui-alerts.html" class="dropdown-item text-dark">DHA Islamabad-Rawalpindi</a>
-                                                    <a href="ui-buttons.html" class="dropdown-item text-dark">DHA Bahawalpur</a>
-                                                    <a href="ui-cards.html" class="dropdown-item text-dark">DHA Gujranwala</a>
-                                                    <a href="ui-carousel.html" class="dropdown-item text-dark">DHA Karachi</a>
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div>
-                                                    <a href="ui-grid.html" class="dropdown-item text-dark">SEZ Karachi</a>
-                                                    <a href="ui-images.html" class="dropdown-item text-dark">DHA Lahore</a>
-                                                    <a href="ui-images.html" class="dropdown-item text-dark">DHA Multan</a>
-                                                    <a href="ui-images.html" class="dropdown-item text-dark">DHA Peshawar</a>
-                                                                                               
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div>
-                                                    <a href="ui-dropdowns.html" class="dropdown-item text-dark">DHA City Karachi</a>
-                                                    <a href="ui-images.html" class="dropdown-item text-dark">DHA Quetta</a>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </li>
-                    
-                                <li class="nav-item">
-                                    <a href="calendar.html" class="nav-link">
-                                        <i class="ri-calendar-2-line text-dark"></i>
-                                        <span class="text-dark">Calendar</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="{% url 'dashboard' %}" class="nav-link">
-                                        <!-- <i class="ri-dashboard-line text-dark"></i> -->
-                                        <i class="ri-question-line text-dark"></i>
-                                        <span class="text-dark">FAQ</span>
-                                    </a>
-                                </li>
-
-
-                                <li class="nav-item">
-                                    <a href="calendar.html" class="nav-link">
-                                        <i class="ri-file-user-line text-dark"></i>
-                                        <span class="text-dark">Profile</span>
-                                    </a>
-                                </li>
-                    
-
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
+            {% if user.role.role_name == 'Firms' %}
+                {% include 'includes/nav_bar_firm.html' %}
+                
+            {% elif user.role.role_name == 'Listers' %}
+                {% include 'includes/nav_bar_listers.html' %}           
             
+            {% elif user.role.role_name == 'admin' %}
+                {% include 'includes/nav_bar_admin.html' %} 
+                
+            {% endif %}
             
 
             <!-- ============================================================== -->
@@ -389,6 +315,7 @@
 
         <!-- Required datatable js -->
         <script src="{% static 'assets/libs/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'assets/js/pages/datatables.init.js' %}"></script>
         <script src="{% static 'assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
         
         <!-- Responsive examples -->
@@ -399,6 +326,18 @@
 
         <!-- App js -->
         <script src="{% static 'assets/js/app.js' %}"></script>
+
+        
+        <!-- plugin js -->
+        <script src="{% static 'assets/libs/moment/min/moment.min.js' %}"></script>
+        <script src="{% static 'assets/libs/jquery-ui-dist/jquery-ui.min.js' %}"></script>
+
+        <script src="{% static 'assets/libs/fullcalendar/index.global.min.js' %}"></script>
+
+
+        <!-- Calendar init -->
+        <script src="{% static 'assets/js/pages/calendar.init.js' %}"></script>
+
     </body>
 
 </html>
