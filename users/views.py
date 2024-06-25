@@ -12,8 +12,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth import views as auth_views
 
 
-
-
 class LoginView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'users/login.html')
@@ -25,19 +23,20 @@ class LoginView(View):
             user = authenticate(username=email, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('dashboard')  # Redirect to the dashboard page after successful login
+                # Redirect to the dashboard page after successful login
+                return redirect('dashboard')
 
             else:
                 # Handle invalid login credentials
                 messages.error(request, 'Invalid Username or Password')
                 return redirect("login")
-        
+
         except Exception as e:
             messages.error(request, 'Invalid Username or Passworddd')
             return redirect("login")
 
 
-
 class CustomLogoutView(auth_views.LogoutView):
-    def get_next_page(self):
-       next_page = reverse_lazy('login')  # Redirect to 'login' URL after logout
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        return redirect('login')  # Redirect to 'login' URL after logout

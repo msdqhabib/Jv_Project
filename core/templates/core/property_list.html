@@ -26,7 +26,6 @@
         <th>Land For</th>
         <th>Available Land</th>
         <th>Address</th>
-        <th>Address</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -35,11 +34,10 @@
     <tbody>
       {% for property in object_list %}
         <tr>
-            <td>{{property.type_of_land}}</td>
+            <td>{{property.land_type}}</td>
             <td>{{property.phase}}</td>
             <td>{{property.total_land}}</td>
             <td>{{property.land_unit}}</td>
-            <td>{{property.percentage_shareholding}}</td>
             <td><a href="{% url 'property-detail' property.pk %}">View</a></td>
             
         </tr>

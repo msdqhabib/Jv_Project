@@ -108,14 +108,14 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-truncate font-size-14 mb-2">Total Properties</p>
-                            <h4 class="mb-2">938</h4>
+                            <h4 class="mb-2">{{ total_properties }}</h4>
                             <!-- properties type name iwht count and progress bar -->
                             <div class="d-flex justify-content-between mt-3">
                                 <div class="dashboard-cards-list-items">
                                     <li><span class="text-gray font-weight-semibold font-size-13">Residencial</span></li>
                                 </div>
                                 <div class="dashboard-list-items-count ml-5">
-                                    17
+                                    {{ residential_count }}
                                 </div>
                             </div>
                             <div class="progress mb-3" style="height: 3px;">
@@ -128,7 +128,7 @@
                                     <li><span class="text-gray font-weight-semibold font-size-13">Commercial</span></li>
                                 </div>
                                 <div class="dashboard-list-items-count ml-5">
-                                    10
+                                    {{ commercial_count }}
                                 </div>
                             </div>
                             <div class="progress mb-3" style="height: 3px;">

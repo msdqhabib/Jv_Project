@@ -26,22 +26,43 @@ def dashboard(request):
     else:
         return render(request, 'base.html')
 
+
 def admin_dashboard(request):
     return render(request, 'core/admin_dashboard.html')
 
+
 def lister_dashboard(request):
     return render(request, 'core/lister_dashboard.html')
+
 
 def firm_dashboard(request):
     user = User.objects.get(username=request.user.username)
     firm_instance = Firm.objects.filter(user=user).last()
     status_history = firm_instance.status_history
-    
+
     # Create a dictionary of statuses with their timestamps
     status_history = {entry['status'].replace('-', '_'): entry['timestamp']
-        for entry in firm_instance.status_history}
+                      for entry in firm_instance.status_history}
+
+    firm = Firm.objects.filter(user=request.user).first()
+
+    if firm:
+        total_properties = Property.objects.all().count()
+        print(f'total_properties - {total_properties}')
+        residential_count = Property.objects.filter(
+            land_type='Residential').count()
+        commercial_count = Property.objects.filter(
+            land_type='Commercial').count()
+        semi_commercial_count = Property.objects.filter(
+            land_type='Semi Commercial').count()
+    else:
+        total_properties = residential_count = commercial_count = semi_commercial_count = 0
 
     context = {
+        'total_properties': total_properties,
+        'residential_count': residential_count,
+        'commercial_count': commercial_count,
+        'semi_commercial_count': semi_commercial_count,
         'firm': firm_instance,
         'status_history': status_history,
     }
@@ -63,13 +84,16 @@ class PropertyListView(ListView):
 
     def get(self, request, *args, **kwargs):
         if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-            properties = self.get_queryset().values('type_of_land', 'phase', 'total_land', 'land_unit', 'percentage_shareholding', 'id')
+            properties = self.get_queryset().values('type_of_land', 'phase', 'total_land',
+                                                    'land_unit', 'percentage_shareholding', 'id')
             return JsonResponse(list(properties), safe=False)
         return super().get(request, *args, **kwargs)
+
 
 class PropertyDetailView(DetailView):
     model = Property
     template_name = 'core/property_detail.html'
+
 
 class PropertyCreateView(CreateView):
     model = Property
@@ -77,11 +101,13 @@ class PropertyCreateView(CreateView):
     template_name = 'core/property_form.html'
     success_url = reverse_lazy('property-list')
 
+
 class PropertyUpdateView(UpdateView):
     model = Property
     fields = '__all__'
     template_name = 'core/property_form.html'
     success_url = reverse_lazy('property-list')
+
 
 class PropertyDeleteView(DeleteView):
     model = Property
